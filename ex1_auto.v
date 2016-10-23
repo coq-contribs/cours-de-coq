@@ -8,36 +8,36 @@
 (****************************************************************************)
 
 Theorem trivial : forall A : Prop, A -> A.
-auto with v62.
+auto.
 Qed.
 
 Theorem and_commutative : forall A B : Prop, A /\ B -> B /\ A.
-intros A B H'; elim H'; auto with v62.
+intros A B H'; elim H'; auto.
 Qed.
 
 Theorem or_commutative : forall A B : Prop, A \/ B -> B \/ A.
-intros A B H'; elim H'; auto with v62.
+intros A B H'; elim H'; auto.
 Qed.
 
 Theorem mp : forall A B : Prop, A -> (A -> B) -> B.
-auto with v62.
+auto.
 Qed.
 
 Theorem S : forall A B C : Prop, (A -> B -> C) -> (A -> B) -> A -> C.
-auto with v62.
+auto.
 Qed.
 
 Theorem Praeclarum :
  forall x y z t : Prop, (x -> z) /\ (y -> t) -> x /\ y -> z /\ t.
 intros x y z t H'; elim H'.
 intros H'0 H'1 H'2; elim H'2.
-auto with v62.
+auto.
 Qed.
 
 Theorem resolution :
  forall (p q : Type -> Prop) (a : Type),
  p a -> (forall x : Type, p x -> q x) -> q a.
-auto with v62.
+auto.
 Qed.
 
 Theorem Witnesses :
@@ -55,34 +55,34 @@ Theorem Simple :
  forall x : A, (exists y : A, R x y) -> R x x.
 intros A R H' H'0 x H'1; try assumption.
 elim H'1; intros y E; clear H'1; try exact E.
-apply H' with y; auto with v62.
+apply H' with y; auto.
 Qed.
 
 Theorem not_not : forall a : Prop, a -> ~ ~ a.
-unfold not in |- *; auto with v62.
+unfold not in |- *; auto.
 Qed.
 
 Theorem mini_cases : forall x y : Prop, (x \/ ~ y) /\ y -> x.
 intros x y h; elim h; intros h0 H'; elim h0;
  [ clear h h0; intro H'0 | intro H'0; elim H'0; clear h h0; try assumption ];
- auto with v62.
+ auto.
 Qed.
 
 Require Import Classical.
 (*This theorem needs classical logic*)
 
 Theorem not_not_converse : forall a : Prop, ~ ~ a -> a.
-intros a H'; try assumption; auto 10 with v62.
+intros a H'; try assumption; auto 10.
 generalize (classic a); intro h; elim h;
  [ intro H'0; clear h; try exact H'0 | clear h; intro H'0 ].
 elim H'; assumption.
 Qed.
 
 Theorem not_quite_classic : forall a : Prop, ~ ~ (a \/ ~ a).
-unfold not in |- *; auto with v62.
+unfold not in |- *; auto.
 Qed.
 
 Theorem Peirce : forall A B : Prop, ((((A -> B) -> A) -> A) -> B) -> B.
-auto with v62.
+auto.
 Qed.
 
