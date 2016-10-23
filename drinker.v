@@ -21,6 +21,6 @@ elim E; assumption.
 
 exists x; intros H'0 x0.
 generalize (Excluded_middle (Q x0)); intro h; elim h; intro H'1; clear h;
- auto with v62.
+ auto.
 elim H'; exists x0; assumption.
 Qed.

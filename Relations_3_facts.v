@@ -16,7 +16,7 @@ Theorem Rstar_imp_coherent :
  forall (U : Type) (R : Relation U) (x y : U),
  Rstar U R x y -> coherent U R x y.
 intros U R x y H'; red in |- *.
-exists y; auto with v62.
+exists y; auto.
 Qed.
 Hint Resolve Rstar_imp_coherent.
 
@@ -25,7 +25,7 @@ Theorem coherent_symmetric :
 unfold coherent at 1 in |- *.
 intros U R; red in |- *.
 intros x y h; elim h; intros z h0; elim h0; intros H' H'0; clear h h0.
-exists z; auto with v62.
+exists z; auto.
 Qed.
 
 Theorem Strong_confluence :
@@ -35,7 +35,7 @@ intro x; red in |- *; intros a b H'0.
 unfold coherent at 1 in |- *.
 generalize b; clear b.
 elim H'0; clear H'0.
-intros x0 b H'1; exists b; auto with v62.
+intros x0 b H'1; exists b; auto.
 intros x0 y z H'1 H'2 H'3 b H'4.
 generalize (Lemma1 U R); intro h; lapply h;
  [ intro H'0; generalize (H'0 x0 b); intro h0; lapply h0;
@@ -44,12 +44,12 @@ generalize (Lemma1 U R); intro h; lapply h;
           clear h h0 h1 h2 h3
        | clear h h0 h1 ]
     | clear h h0 ]
- | clear h ]; auto with v62.
+ | clear h ]; auto.
 generalize (H'3 z0); intro h; lapply h;
  [ intro h0; elim h0; intros z1 h1; elim h1; intros H'8 H'9; clear h h0 h1
- | clear h ]; auto with v62.
-exists z1; split; auto with v62.
-apply Rstar_n with z0; auto with v62.
+ | clear h ]; auto.
+exists z1; split; auto.
+apply Rstar_n with z0; auto.
 Qed.
 
 Theorem Strong_confluence_direct :
@@ -59,18 +59,18 @@ intro x; red in |- *; intros a b H'0.
 unfold coherent at 1 in |- *.
 generalize b; clear b.
 elim H'0; clear H'0.
-intros x0 b H'1; exists b; auto with v62.
+intros x0 b H'1; exists b; auto.
 intros x0 y z H'1 H'2 H'3 b H'4.
 cut (exists t : U, Rstar U R y t /\ R b t).
 intro h; elim h; intros t h0; elim h0; intros H'0 H'5; clear h h0.
 generalize (H'3 t); intro h; lapply h;
  [ intro h0; elim h0; intros z0 h1; elim h1; intros H'6 H'7; clear h h0 h1
- | clear h ]; auto with v62.
+ | clear h ]; auto.
 exists z0; split; [ assumption | idtac ].
-apply Rstar_n with t; auto with v62.
+apply Rstar_n with t; auto.
 generalize H'1; generalize y; clear H'1.
 elim H'4.
-intros x1 y0 H'0; exists y0; auto with v62.
+intros x1 y0 H'0; exists y0; auto.
 intros x1 y0 z0 H'0 H'1 H'5 y1 H'6.
 red in H'.
 generalize (H' x1 y0 y1); intro h; lapply h;
@@ -78,12 +78,12 @@ generalize (H' x1 y0 y1); intro h; lapply h;
     [ intro h0; elim h0; intros z1 h1; elim h1; intros H'8 H'9;
        clear h H'7 h0 h1
     | clear h ]
- | clear h ]; auto with v62.
+ | clear h ]; auto.
 generalize (H'5 z1); intro h; lapply h;
  [ intro h0; elim h0; intros t h1; elim h1; intros H'7 H'10; clear h h0 h1
- | clear h ]; auto with v62.
-exists t; split; auto with v62.
-apply Rstar_n with z1; auto with v62.
+ | clear h ]; auto.
+exists t; split; auto.
+apply Rstar_n with z1; auto.
 Qed.
 (* Warming up *)
 
@@ -92,7 +92,7 @@ Theorem Noetherian_contains_Noetherian :
  Noetherian U R -> contains U R R' -> Noetherian U R'.
 unfold Noetherian in |- *.
 intros U R R' H' H'0 x.
-elim (H' x); auto with v62.
+elim (H' x); auto.
 Qed.
 
 Theorem Newman :
@@ -106,22 +106,22 @@ generalize (Rstar_cases U R x0 y); intro h; lapply h;
     [ clear h h0; intro h1
     | intro h1; elim h1; intros u h2; elim h2; intros H'5 H'6;
        clear h h0 h1 h2 ]
- | clear h ]; auto with v62.
-elim h1; auto with v62.
+ | clear h ]; auto.
+elim h1; auto.
 generalize (Rstar_cases U R x0 z); intro h; lapply h;
  [ intro h0; elim h0;
     [ clear h h0; intro h1
     | intro h1; elim h1; intros v h2; elim h2; intros H'7 H'8;
        clear h h0 h1 h2 ]
- | clear h ]; auto with v62.
-elim h1; generalize coherent_symmetric; intro t; red in t; auto with v62.
+ | clear h ]; auto.
+elim h1; generalize coherent_symmetric; intro t; red in t; auto.
 unfold Locally_confluent, locally_confluent, coherent in H'0.
 generalize (H'0 x0 u v); intro h; lapply h;
  [ intro H'9; lapply H'9;
     [ intro h0; elim h0; intros t h1; elim h1; intros H'10 H'11;
        clear h H'9 h0 h1
     | clear h ]
- | clear h ]; auto with v62.
+ | clear h ]; auto.
 clear H'0.
 unfold coherent at 1 in H'2.
 generalize (H'2 u); intro h; lapply h;
@@ -131,7 +131,7 @@ generalize (H'2 u); intro h; lapply h;
           clear h h0 H'9 h1 h2
        | clear h h0 ]
     | clear h h0 ]
- | clear h ]; auto with v62.
+ | clear h ]; auto.
 generalize Rstar_transitive; intro T; red in T.
 generalize (H'2 v); intro h; lapply h;
  [ intro H'9; generalize (H'9 y1 z); intro h0; lapply h0;
@@ -140,8 +140,8 @@ generalize (H'2 v); intro h; lapply h;
           clear h h0 H'14 h1 h2
        | clear h h0 ]
     | clear h h0 ]
- | clear h ]; auto with v62.
-red in |- *; (exists z1; split); auto with v62.
-apply T with y1; auto with v62.
-apply T with t; auto with v62.
+ | clear h ]; auto.
+red in |- *; (exists z1; split); auto.
+apply T with y1; auto.
+apply T with t; auto.
 Qed.
